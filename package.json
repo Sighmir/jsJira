@@ -1,0 +1,28 @@
+{
+  "name": "jsjira",
+  "version": "1.0.5",
+  "description": "Javascript Jira API",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "node example/example.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sighmir/jsJira.git"
+  },
+  "author": "Guilherme Caulada (Sighmir)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Sighmir/jsJira/issues"
+  },
+  "homepage": "https://github.com/Sighmir/jsJira#readme",
+  "dependencies": {
+    "xmlhttprequest": "^1.8.0"
+  },
+  "keywords": [
+    "jira"
+  ]
+}
