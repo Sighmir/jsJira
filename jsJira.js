@@ -98,7 +98,74 @@ class JiraAPI extends ExtendableProxy {
       getFilter: [`GET`, `/rest/api/3/filter/${params[0]}?${this.serialize(params[1])}`],
       updateFilter: [`PUT`, `/rest/api/3/filter/${params[0]}?${this.serialize(params[1])}`, params[2]],
       deleteFilter: [`DELETE`, `/rest/api/3/filter/${params[0]}`],
-      // getColumns...
+      getColumns: [`GET`, `/rest/api/3/filter/${params[0]}/columns`],
+      setColumns: [`PUT`, `/rest/api/3/filter/${params[0]}/columns`, params[1]],
+      resetColumns: [`DELETE`, `/rest/api/3/filter/${params[0]}/columns`],
+      addFavoriteFilter: [`PUT`, `/rest/api/3/filter/${params[0]}/favourite?${this.serialize(params[1])}`],
+      removeFavoriteFilter: [`DELETE`, `/rest/api/3/filter/${params[0]}/favourite?${this.serialize(params[1])}`],
+      // Filter sharing
+      getDefaultShareScope: [`GET`, `/rest/api/3/filter/defaultShareScope`],
+      setDefaultShareScope: [`PUT`, `/rest/api/3/filter/defaultShareScope`, params[0]],
+      getSharePermissions: [`GET`, `/rest/api/3/filter/${params[0]}/permission`],
+      addSharePermissions: [`POST`, `/rest/api/3/filter/${params[0]}/permission`, params[1]],
+      getSharePermission: [`GET`, `/rest/api/3/filter/${params[0]}/permission/${params[1]}`],
+      deleteSharePermission: [`DELETE`, `/rest/api/3/filter/${params[0]}/permission/${params[1]}`],
+      // Group and user picker
+      findUsersAndGroups: [`GET`, `/rest/api/3/groupuserpicker?${this.serialize(params[0])}`],
+      // Group
+      getGroup: [`GET`, `/rest/api/3/group?${this.serialize(params[0])}`],
+      createGroup: [`POST`, `/rest/api/3/group`, params[0]],
+      deleteGroup: [`DELETE`, `/rest/api/3/group?${this.serialize(params[0])}`],
+      getGroupUsers: [`GET`, `/rest/api/3/group/member?${this.serialize(params[0])}`],
+      addGroupUser: [`POST`, `/rest/api/3/group/user?${this.serialize(params[0])}`, params[1]],
+      removeGroupUser: [`DELETE`, `/rest/api/3/group/user?${this.serialize(params[0])}`],
+      findGroups: [`GET`, `/rest/api/3/groups/picker?${this.serialize(params[0])}`],
+      // Issues
+      createIssue: [`POST`, `/rest/api/3/issue?${this.serialize(params[0])}`, params[1]],
+      bulkCreateIssue: [`POST`, `/rest/api/3/issue/bulk`, params[0]],
+      getCreateIssueMetadata: [`GET`, `/rest/api/3/issue/createmeta?${this.serialize(params[0])}`],
+      getIssue: [`GET`, `/rest/api/3/issue/${params[0]}?${this.serialize(params[1])}`],
+      editIssue: [`PUT`, `/rest/api/3/issue/${params[0]}?${this.serialize(params[1])}`, params[2]],
+      deleteIssue: [`DELETE`, `/rest/api/3/issue/${params[0]}?${this.serialize(params[1])}`],
+      assignIssue: [`PUT`, `/rest/api/3/issue/${params[0]}/assignee`, params[1]],
+      getIssueChangeLogs: [`GET`, `/rest/api/3/issue/${params[0]}/changelog?${this.serialize(params[1])}`],
+      getEditIssueMetadata: [`GET`, `/rest/api/3/issue/${params[0]}/editmeta?${this.serialize(params[1])}`],
+      sendIssueNotification: [`POST`, `/rest/api/3/issue/${params[0]}/notify`, params[1]],
+      getTransitions: [`GET`, `/rest/api/3/issue/${params[0]}/transitions?${this.serialize(params[1])}`],
+      transitionIssue: [`POST`, `/rest/api/3/issue/${params[0]}/transitions`, params[1]],
+      // Issue attachments
+      getAttachmentSettings: [`GET`, `/rest/api/3/attachment/meta`],
+      getAttachmentMetadata: [`GET`, `/rest/api/3/attachment/${params[0]}`],
+      deleteAttachmentMetadata: [`DELETE`, `/rest/api/3/attachment/${params[0]}`],
+      getAttachmentMetadataHuman: [`GET`, `/rest/api/3/attachment/${params[0]}/expand/human`],
+      getAttachmentMetadataRaw: [`GET`, `/rest/api/3/attachment/${params[0]}/expand/raw`],
+      addAttachment: [`POST`, `/rest/api/3/issue/${params[0]}/attachments`, params[1]],
+      // Issue comments
+      getCommentsById: [`POST`, `/rest/api/3/comment/list?${this.serialize(params[0])}`, params[1]],
+      getComments: [`GET`, `/rest/api/3/issue/${params[0]}/comment?${this.serialize(params[1])}`],
+      addComment: [`POST`, `/rest/api/3/issue/${params[0]}/comment?${this.serialize(params[1])}`, params[2]],
+      getComment: [`GET`, `/rest/api/3/issue/${params[0]}/comment/${params[1]}?${this.serialize(params[2])}`],
+      updateComment: [`PUT`, `/rest/api/3/issue/${params[0]}/comment/${params[1]}?${this.serialize(params[2])}`, params[3]],
+      deleteComment: [`DELETE`, `/rest/api/3/issue/${params[0]}/comment/${params[1]}`],
+      // Issue comment properties
+      getCommentPropertyKeys: [`GET`, `/rest/api/3/comment/${params[0]}/properties`],
+      getCommentProperty: [`GET`, `/rest/api/3/comment/${params[0]}/properties/${params[1]}`],
+      setCommentProperty: [`PUT`, `/rest/api/3/comment/${params[0]}/properties/${params[1]}`, params[2]],
+      deleteCommentProperty: [`DELETE`, `/rest/api/3/comment/${params[0]}/properties/${params[1]}`],
+      // Issue fields
+      getCustomFieldOption: [`GET`, `/rest/api/3/customFieldOption/${params[0]}`],
+      getFields: [`GET`, `/rest/api/3/field`],
+      createCustomField: [`POST`, `/rest/api/3/field`, params[0]],
+      // Issue field options
+      getIssueFieldOptions: [`GET`, `/rest/api/3/field/${params[0]}/option?${this.serialize(params[1])}`],
+      createIssueFieldOption: [`POST`, `/rest/api/3/field/${params[0]}/option`, params[1]],
+      getSelectableIssueFieldOptions: [`GET`, `/rest/api/3/field/${params[0]}/option/suggestions/edit?${this.serialize(params[1])}`],
+      getVisibleIssueFieldOptions: [`GET`, `/rest/api/3/field/${params[0]}/option/suggestions/search?${this.serialize(params[1])}`],
+      getIssueFieldOption: [`GET`, `/rest/api/3/field/${params[0]}/option/${params[1]}`],
+      updateIssueFieldOption: [`PUT`, `/rest/api/3/field/${params[0]}/option/${params[1]}`, params[2]],
+      deleteIssueFieldOption: [`DELETE`, `/rest/api/3/field/${params[0]}/option/${params[1]}`],
+      replaceIssueFieldOption: [`DELETE`, `/rest/api/3/field/${params[0]}/option/${params[1]}/issue?${this.serialize(params[2])}`],
+      // Issue links...
     }
 
     if (method[action] == undefined) {
