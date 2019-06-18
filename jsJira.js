@@ -165,7 +165,88 @@ class JiraAPI extends ExtendableProxy {
       updateIssueFieldOption: [`PUT`, `/rest/api/3/field/${params[0]}/option/${params[1]}`, params[2]],
       deleteIssueFieldOption: [`DELETE`, `/rest/api/3/field/${params[0]}/option/${params[1]}`],
       replaceIssueFieldOption: [`DELETE`, `/rest/api/3/field/${params[0]}/option/${params[1]}/issue?${this.serialize(params[2])}`],
-      // Issue links...
+      // Issue links
+      createIssueLink: [`POST`, `/rest/api/3/issueLink`, params[0]],
+      getIssueLink: [`GET`, `/rest/api/3/issueLink/${params[0]}`],
+      deleteIssueLink: [`DELETE`, `/rest/api/3/issueLink/${params[0]}`],
+      // Issue link types
+      getIssueLinkTypes: [`GET`, `/rest/api/3/issueLinkType`],
+      createIssueLink: [`POST`, `/rest/api/3/issueLinkType`, params[0]],
+      getIssueLinkType: [`GET`, `/rest/api/3/issueLinkType/${params[0]}`],
+      updateIssueLinkType: [`PUT`, `/rest/api/3/issueLinkType/${params[0]}`, params[1]],
+      deleteIssueLinkType: [`DELETE`, `/rest/api/3/issueLinkType/${params[0]}`],
+      // Issue navigator settings
+      getIssueNavigatorDefaultColumns: [`GET`, `/rest/api/3/settings/columns`],
+      setIssueNavigatorDefaultColumns: [`PUT`, `/rest/api/3/settings/columns`, params[0]],
+      // Get notification schemes
+      getNotificatonSchemes: [`GET`, `/rest/api/3/notificationscheme?${this.serialize(params[0])}`],
+      getNotificatonScheme: [`GET`, `/rest/api/3/notificationscheme/${params[0]}?${this.serialize(params[1])}`],
+      // Issue priorities
+      getPriorities: [`GET`, `/rest/api/3/priority`],
+      getPriority: [`GET`, `/rest/api/3/priority/${params[0]}`],
+      // Issue properties
+      bulkSetIssueProperty: [`PUT`, `/rest/api/3/issue/properties/${params[0]}`, params[1]],
+      bulkDeleteIssueProperty: [`DELETE`, `/rest/api/3/issue/properties/${params[0]}`, params[1]],
+      getIssuePropertyKeys: [`GET`, `/rest/api/3/issue/${params[0]}/properties`],
+      getIssueProperty: [`GET`, `/rest/api/3/issue/${params[0]}/properties/${params[1]}`],
+      setIssueProperty: [`PUT`, `/rest/api/3/issue/${params[0]}/properties/${params[1]}`, params[2]],
+      deleteIssueProperty: [`DELETE`, `/rest/api/3/issue/${params[0]}/properties/${params[1]}`],
+      // Issue remote links
+      getRemoteIssueLinks: [`GET`, `/rest/api/3/issue/${params[0]}/remotelink?${this.serialize(params[1])}`],
+      setRemoteIssueLinks: [`POST`, `/rest/api/3/issue/${params[0]}/remotelink`, params[1]],
+      deleteRemoteIssueLinks: [`DELETE`, `/rest/api/3/issue/${params[0]}/remotelink?${this.serialize(params[1])}`],
+      getRemoteIssueLink: [`GET`, `/rest/api/3/issue/${params[0]}/remotelink/${params[1]}`],
+      updateRemoteIssueLink: [`PUT`, `/rest/api/3/issue/${params[0]}/remotelink/${params[1]}`, params[2]],
+      deleteRemoteIssueLink: [`DELETE`, `/rest/api/3/issue/${params[0]}/remotelink/${params[1]}`],
+      // Issue resolutions
+      getResolutions: [`GET`, `/rest/api/3/resolution`],
+      getResolution: [`GET`, `/rest/api/3/resolution/${params[0]}`],
+      // Issue search
+      getIssuePickerSuggestions: [`GET`, `/rest/api/3/issue/picker?${this.serialize(params[0])}`],
+      checkIssuesAgainstJQL: [`POST`, `/rest/api/3/jql/match`, params[0]],
+      searchIssuesUsingJQL: [`GET`, `/rest/api/3/search?${this.serialize(params[0])}`],
+      searchForIssuesUsingJQL: [`POST`, `/rest/api/3/search`, params[0]],
+      // Issue security level
+      getIssueSecurityLevel: [`GET`, `/rest/api/3/securitylevel/${params[0]}`],
+      // Issue security schemes
+      getIssueSecuritySchemes: [`GET`, `/rest/api/3/issuesecurityschemes`],
+      getIssueSecurityScheme: [`GET`, `/rest/api/3/issuesecurityschemes/${params[0]}`],
+      // Issue types
+      getIssueTypes: [`GET`, `/rest/api/3/issuetype`],
+      createIssueTypes: [`POST`, `/rest/api/3/issuetype`, params[0]],
+      getIssueType: [`GET`, `/rest/api/3/issuetype/${params[0]}`],
+      updateIssueType: [`PUT`, `/rest/api/3/issuetype/${params[0]}`, params[1]],
+      deleteIssueType: [`DELETE`, `/rest/api/3/issuetype/${params[0]}?${this.serialize(params[1])}`],
+      getAlternativeIssueTypes: [`GET`, `/rest/api/3/issuetype/${params[0]}/alternatives`],
+      loadIssueTypeAvatar: [`POST`, `/rest/api/3/issuetype/${params[0]}/avatar2?${this.serialize(params[1])}`, params[2]],
+      // Issue type properties
+      getIssueTypePropertyKeys: [`GET`, `/rest/api/3/issuetype/${params[0]}/properties`],
+      getIssueTypeProperty: [`GET`, `/rest/api/3/issuetype/${params[0]}/properties/${params[1]}`],
+      setIssueTypeProperty: [`PUT`, `/rest/api/3/issuetype/${params[0]}/properties/${params[1]}`, params[2]],
+      deleteIssueTypeProperty: [`DELETE`, `/rest/api/3/issuetype/${params[0]}/properties/${params[1]}`],
+      // Issue votes
+      getIssueVotes: [`GET`, `/rest/api/3/issue/${params[0]}/votes`],
+      addIssueVotes: [`POST`, `/rest/api/3/issue/${params[0]}/votes`],
+      deleteIssueVotes: [`DELETE`, `/rest/api/3/issue/${params[0]}/votes`],
+      // Issue watchers
+      getIssueWatchers: [`GET`, `/rest/api/3/issue/${params[0]}/watchers`],
+      addIssueWatcher: [`POST`, `/rest/api/3/issue/${params[0]}/watchers`, params[1]],
+      deleteIssueWatcher: [`DELETE`, `/rest/api/3/issue/${params[0]}/watchers?${this.serialize(params[1])}`],
+      // Issue worklogs
+      getIssueWorklogs: [`GET`, `/rest/api/3/issue/${params[0]}/worklog?${this.serialize(params[1])}`],
+      addIssueWorklog: [`POST`, `/rest/api/3/issue/${params[0]}/worklog?${this.serialize(params[1])}`, params[2]],
+      getIssueWorklog: [`GET`, `/rest/api/3/issue/${params[0]}/worklog/${params[1]}?${this.serialize(params[2])}`],
+      updateIssueWorklog: [`PUT`, `/rest/api/3/issue/${params[0]}/worklog/${params[1]}?${this.serialize(params[2])}`, params[3]],
+      deleteIssueWorklog: [`DELETE`, `/rest/api/3/issue/${params[0]}/worklog/${params[1]}?${this.serialize(params[2])}`],
+      getDeletedWorklogs: [`GET`, `/rest/api/3/worklog/deleted?${this.serialize(params[0])}`],
+      getWorklogs: [`POST`, `/rest/api/3/worklog/list?${this.serialize(params[0])}`, params[1]],
+      getUpdatedWorklogs: [`GET`, `/rest/api/3/worklog/updated?${this.serialize(params[0])}`],
+      // Issue worklog properties
+      getIssueWorklogPropertyKeys: [`GET`, `/rest/api/3/issue/${params[0]}/worklog/${params[1]}/properties`],
+      getIssueWorklogProperty: [`GET`, `/rest/api/3/issue/${params[0]}/worklog/${params[1]}/properties/${params[2]}`],
+      setIssueWorklogProperty: [`PUT`, `/rest/api/3/issue/${params[0]}/worklog/${params[1]}/properties/${params[2]}`, params[3]],
+      deleteIssueWorklogProperty: [`DELETE`, `/rest/api/3/issue/${params[0]}/worklog/${params[1]}/properties/${params[2]}`],
+      // Jira expressions...
     }
 
     if (method[action] == undefined) {
