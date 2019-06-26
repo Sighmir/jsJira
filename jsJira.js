@@ -246,7 +246,56 @@ class JiraAPI extends ExtendableProxy {
       getIssueWorklogProperty: [`GET`, `/rest/api/3/issue/${params[0]}/worklog/${params[1]}/properties/${params[2]}`],
       setIssueWorklogProperty: [`PUT`, `/rest/api/3/issue/${params[0]}/worklog/${params[1]}/properties/${params[2]}`, params[3]],
       deleteIssueWorklogProperty: [`DELETE`, `/rest/api/3/issue/${params[0]}/worklog/${params[1]}/properties/${params[2]}`],
-      // Jira expressions...
+      // Jira expressions
+      evaluateJiraExpression: [`POST`, `/rest/api/3/expression/eval?${this.serialize(params[0])}`, params[1]],
+      // Jira settings
+      getApplicationProperty: [`GET`, `/rest/api/3/application-properties?${this.serialize(params[0])}`],
+      getAdvancedSettings: [`GET`, `/rest/api/3/application-properties/advanced-settings`],
+      setApplicationProperty: [`PUT`, `/rest/api/3/application-properties/${params[0]}`, params[1]],
+      getGlobalSettings: [`GET`, `/rest/api/3/configuration`],
+      // JQL
+      getFieldReferenceData: [`GET`, `/rest/api/3/jql/autocompletedata`],
+      getFieldAutoCompleteSuggestions: [`GET`, `/rest/api/3/jql/autocompletedata/suggestions?${this.serialize(params[0])}`],
+      convertUserIdentityToAccountId: [`POST`, `/rest/api/3/jql/pdcleaner`, params[0]],
+      // Myself
+      getPreference: [`GET`, `/rest/api/3/mypreferences?${this.serialize(params[0])}`],
+      setPreference: [`PUT`, `/rest/api/3/mypreferences?${this.serialize(params[0])}`, params[1]],
+      deletePreference: [`DELETE`, `/rest/api/3/mypreferences?${this.serialize(params[0])}`],
+      getLocale: [`GET`, `/rest/api/3/mypreferences/locale`],
+      setLocale: [`PUT`, `/rest/api/3/mypreferences/locale`, params[0]],
+      deleteLocale: [`DELETE`, `/rest/api/3/mypreferences/locale`],
+      getCurrentUser: [`GET`, `/rest/api/3/myself?${this.serialize(params[0])}`],
+      // Permissions
+      getMyPermissions: [`GET`, `/rest/api/3/mypermissions?${this.serialize(params[0])}`],
+      getAllPermissions: [`GET`, `/rest/api/3/permissions`],
+      getBulkPermissions: [`POST`, `/rest/api/3/permissions/check`, params[0]],
+      getPermittedProjects: [`POST`, `/rest/api/3/permissions/project`, params[0]],
+      // Permission schemes
+      getAllPermissionSchemes: [`GET`, `/rest/api/3/permissionscheme?${this.serialize(params[0])}`],
+      createPermissionScheme: [`POST`, `/rest/api/3/permissionscheme?${this.serialize(params[0])}`, params[1]],
+      getPermissionScheme: [`GET`, `/rest/api/3/permissionscheme/${params[0]}?${this.serialize(params[1])}`],
+      updatePermissionScheme: [`PUT`, `/rest/api/3/permissionscheme/${params[0]}?${this.serialize(params[1])}`, params[2]],
+      deletePermissionScheme: [`DELETE`, `/rest/api/3/permissionscheme/${params[0]}`],
+      getPermissionSchemeGrants: [`GET`, `/rest/api/3/permissionscheme/${params[0]}/permission?${this.serialize(params[1])}`],
+      createPermissionGrant: [`POST`, `/rest/api/3/permissionscheme/${params[0]}/permission?${this.serialize(params[1])}`, params[2]],
+      getPermissionSchemeGrant: [`GET`, `/rest/api/3/permissionscheme/${params[0]}/permission/${params[1]}?${this.serialize(params[2])}`],
+      deletePermissionSchemeGrant: [`DELETE`, `/rest/api/3/permissionscheme/${params[0]}/permission/${params[1]}`],
+      // Projects
+      getAllProjects: [`GET`, `/rest/api/3/project?${this.serialize(params[0])}`],
+      createProject: [`POST`, `/rest/api/3/project`, params[0]],
+      getProjects: [`GET`, `/rest/api/3/project/search?${this.serialize(params[0])}`],
+      getProject: [`GET`, `/rest/api/3/project/${params[0]}?${this.serialize(params[1])}`],
+      updateProject: [`PUT`, `/rest/api/3/project/${params[0]}?${this.serialize(params[1])}`, params[2]],
+      deleteProject: [`DELETE`, `/rest/api/3/project/${params[0]}`],
+      getProjectStatuses: [`GET`, `/rest/api/3/project/${params[0]}/statuses`],
+      updateProjectType: [`PUT`, `/rest/api/3/project/${params[0]}/type/${params[1]}`],
+      getProjectNotificationScheme: [`GET`, `/rest/api/3/project/${params[0]}/notificationscheme?${this.serialize(params[1])}`],
+      // Project avatars
+      setProjectAvatar: [`PUT`, `/rest/api/3/project/${params[0]}/avatar`, params[1]],
+      deleteProjectAvatar: [`DELETE`, `/rest/api/3/project/${params[0]}/avatar/${params[1]}`],
+      loadProjectAvatar: [`POST`, `/rest/api/3/project/${params[0]}/avatar2?${this.serialize(params[1])}`],
+      getAllProjectAvatars: [`PUT`, `/rest/api/3/project/${params[0]}/avatars`],
+      // Project categories...
     }
 
     if (method[action] == undefined) {
