@@ -413,7 +413,29 @@ class JiraAPI extends ExtendableProxy {
       registerDynamicWebhooks: [`POST`, `/rest/api/3/webhook`, params[0]],
       deleteWebhooks: [`DELETE`, `/rest/api/3/webhook`, params[0]],
       extendWebhookLife: [`PUT`, `/rest/api/3/webhook/refresh`, params[0]],
-      // Workflows...
+      // Workflows
+      getAllWorkflows: [`GET`, `/rest/api/3/workflow?${this.serialize(params[0])}`],
+      getWorkflowsPaginated: [`GET`, `/rest/api/3/workflow/search?${this.serialize(params[0])}`],
+      // Workflow transition rules
+      getWorkflowTransitionRuleConfigurations: [`GET`, `/rest/api/3/workflow/rule/config?${this.serialize(params[0])}`],
+      updateWorkflowTransitionRuleConfigurations: [`PUT`, `/rest/api/3/workflow/rule/config`, params[0]],
+      // Workflow schemes
+      createWorkflowScheme: [`POST`, `/rest/api/3/workflowscheme`, params[0]],
+      getWorkflowScheme: [`GET`, `/rest/api/3/workflowscheme/${params[0]}?${this.serialize(params[1])}`],
+      updateWorkflowScheme: [`PUT`, `/rest/api/3/workflowscheme/${params[0]}`, params[1]],
+      deleteWorkflowScheme: [`DELETE`, `/rest/api/3/workflowscheme/${params[0]}`],
+      getDefaultWorkflow: [`GET`, `/rest/api/3/workflowscheme/${params[0]}/default?${this.serialize(params[1])}`],
+      updateDefaultWorkflow: [`PUT`, `/rest/api/3/workflowscheme/${params[0]}/default`, params[1]],
+      deleteDefaultWorkflow: [`DELETE`, `/rest/api/3/workflowscheme/${params[0]}/default?${this.serialize(params[1])}`],
+      getWorkflowForIssueTypeInWorkflowScheme: [`GET`, `/rest/api/3/workflowscheme/${params[0]}/issuetype/${params[1]}?${this.serialize(params[2])}`],
+      setWorkflowForIssueTypeInWorkflowScheme: [`PUT`, `/rest/api/3/workflowscheme/${params[0]}/issuetype/${params[1]}`, params[2]],
+      deleteWorkflowForIssueTypeInWorkflowScheme: [`DELETE`, `/rest/api/3/workflowscheme/${params[0]}/issuetype/${params[1]}?${this.serialize(params[2])}`],
+      getIssueTypesForWorkflowsInWorkflowScheme: [`GET`, `/rest/api/3/workflowscheme/${params[0]}/workflow?${this.serialize(params[1])}`],
+      setIssueTypesForWorkflowsInWorkflowScheme: [`PUT`, `/rest/api/3/workflowscheme/${params[0]}/workflow?${this.serialize(params[1])}`, params[2]],
+      deleteIssueTypesForWorkflowsInWorkflowScheme: [`DELETE`, `/rest/api/3/workflowscheme/${params[0]}/workflow?${this.serialize(params[1])}`],
+      // Workflow scheme project associations
+      getWorkflowSchemeProjectAssociations: [`GET`, `/rest/api/3/workflowscheme/project?${this.serialize(params[0])}`],
+      // Workflow scheme drafts...
     }
 
     if (method[action] == undefined) {
