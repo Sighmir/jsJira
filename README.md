@@ -12,13 +12,13 @@
 If you are using Node.js, install jsJira using npm:
 
 ```bash
-$ npm install jsjira
+$ npm install @sighmir/jsjira
 ```
 
 You can now require and use jsjira like so:
 
 ```js
-let JiraAPI = require('jsjira')
+let JiraAPI = require('@sighmir/jsjira')
 
 const JIRA_URL = process.env.JIRA_URL
 const JIRA_LOGIN = process.env.JIRA_LOGIN

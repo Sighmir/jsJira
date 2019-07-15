@@ -1,6 +1,6 @@
 {
-  "name": "jsjira",
-  "version": "1.0.5",
+  "name": "@sighmir/jsjira",
+  "version": "1.0.7",
   "description": "Javascript Jira API",
   "main": "index.js",
   "directories": {

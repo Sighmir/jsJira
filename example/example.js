@@ -1,4 +1,4 @@
-let JiraAPI = require('..') //jsjira
+let JiraAPI = require('..') //@sighmir/jsjira
 
 const JIRA_URL = process.env.JIRA_URL
 const JIRA_LOGIN = process.env.JIRA_LOGIN
