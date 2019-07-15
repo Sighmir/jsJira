@@ -9,7 +9,7 @@ class ExtendableProxy {
 }
 
 class JiraAPI extends ExtendableProxy {
-  constructor(url, userOrToken, password) {
+  constructor(url, userOrToken, token) {
     super({
       get: function (japi, func) {
         if (japi[func] != null) return japi[func]
@@ -21,12 +21,12 @@ class JiraAPI extends ExtendableProxy {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     }
-    if (userOrToken && password) {
-      this.auth = Buffer.from(`${userOrToken}:${password}`).toString('base64')
+    if (userOrToken && token) {
+      this.auth = Buffer.from(`${userOrToken}:${token}`).toString('base64')
       this.headers['Authorization'] = 'Basic ' + this.auth
     } else {
       this.auth = userOrToken
-      this.headers['Authorization'] = 'Bearer ' + this.auth
+      this.headers['X-Atlassian-Token'] = this.auth
     }
   }
 
