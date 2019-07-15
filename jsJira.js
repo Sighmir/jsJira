@@ -435,7 +435,31 @@ class JiraAPI extends ExtendableProxy {
       deleteIssueTypesForWorkflowsInWorkflowScheme: [`DELETE`, `/rest/api/3/workflowscheme/${params[0]}/workflow?${this.serialize(params[1])}`],
       // Workflow scheme project associations
       getWorkflowSchemeProjectAssociations: [`GET`, `/rest/api/3/workflowscheme/project?${this.serialize(params[0])}`],
-      // Workflow scheme drafts...
+      // Workflow scheme drafts
+      createDraftWorkflowScheme: [`POST`, `/rest/api/3/workflowscheme/${params[0]}/createdraft`, params[0]],
+      getDraftWorkflowScheme: [`GET`, `/rest/api/3/workflowscheme/${params[0]}/draft?${this.serialize(params[1])}`],
+      updateDraftWorkflowScheme: [`PUT`, `/rest/api/3/workflowscheme/${params[0]}/draft`, params[1]],
+      deleteWorkflowScheme: [`DELETE`, `/rest/api/3/workflowscheme/${params[0]}/draft`],
+      getDraftDefaultWorkflow: [`GET`, `/rest/api/3/workflowscheme/${params[0]}/draft/default?${this.serialize(params[1])}`],
+      updateDraftDefaultWorkflow: [`PUT`, `/rest/api/3/workflowscheme/${params[0]}/draft/default`, params[1]],
+      deleteDraftDefaultWorkflow: [`DELETE`, `/rest/api/3/workflowscheme/${params[0]}/draft/default?${this.serialize(params[1])}`],
+      getWorkflowForIssueTypeInDraftWorkflowScheme: [`GET`, `/rest/api/3/workflowscheme/${params[0]}/draft/issuetype/${params[1]}?${this.serialize(params[2])}`],
+      setWorkflowForIssueTypeInDraftWorkflowScheme: [`PUT`, `/rest/api/3/workflowscheme/${params[0]}/draft/issuetype/${params[1]}`, params[2]],
+      deleteWorkflowForIssueTypeInDraftWorkflowScheme: [`DELETE`, `/rest/api/3/workflowscheme/${params[0]}/draft/issuetype/${params[1]}?${this.serialize(params[2])}`],
+      getIssueTypesForWorkflowsInDraftWorkflowScheme: [`GET`, `/rest/api/3/workflowscheme/${params[0]}/draft/workflow?${this.serialize(params[1])}`],
+      setIssueTypesForWorkflowsInDraftWorkflowScheme: [`PUT`, `/rest/api/3/workflowscheme/${params[0]}/draft/workflow?${this.serialize(params[1])}`, params[2]],
+      deleteIssueTypesForWorkflowsInDraftWorkflowScheme: [`DELETE`, `/rest/api/3/workflowscheme/${params[0]}/draft/workflow?${this.serialize(params[1])}`],
+      // Workflow statuses
+      getAllStatuses: [`GET`, `/rest/api/3/status`],
+      getStatus: [`GET`, `/rest/api/3/status/${params[0]}`],
+      // Workflow status categories
+      getAllStatusCategories: [`GET`, `/rest/api/3/statuscategory`],
+      getStatusCategory: [`GET`, `/rest/api/3/statuscategory/${params[0]}`],
+      // Workflow transition properties
+      getWorkflowTransitionProperties: [`GET`, `/rest/api/3/workflow/transitions/${params[0]}/properties?${this.serialize(params[1])}`],
+      updateWorkflowTransitionProperties: [`PUT`, `/rest/api/3/workflow/transitions/${params[0]}/properties?${this.serialize(params[1])}`, params[2]],
+      createWorkflowTransitionProperties: [`POST`, `/rest/api/3/workflow/transitions/${params[0]}/properties?${this.serialize(params[1])}`, params[2]],
+      deleteWorkflowTransitionProperties: [`DELETE`, `/rest/api/3/workflow/transitions/${params[0]}/properties?${this.serialize(params[1])}`],
     }
 
     if (method[action] == undefined) {
@@ -451,7 +475,8 @@ class JiraAPI extends ExtendableProxy {
   }
 
   serialize(obj) {
-    var str = []
+    let str = []
+    if (obj == null) return ''
     for (var p in obj) {
       if (obj.hasOwnProperty(p)) {
         if (obj[p].constructor.name == 'Array') {
@@ -461,7 +486,7 @@ class JiraAPI extends ExtendableProxy {
         }
       }
     }
-    return str.join("&")
+    return str.join('&')
   }
 }
 
