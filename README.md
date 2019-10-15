@@ -43,7 +43,7 @@ Refer to the [Jira API Documentation](https://developer.atlassian.com/cloud/jira
 You can also load this script on your browser like so:
 
 ```html
-<script src='https://cdn.jsdelivr.net/npm/jsjira/jsJira.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@sighmir/jsjira/jsJira.js'></script>
 ```
 
 You can now use the class JiraAPI normally on the page, like you would on Node.js.
